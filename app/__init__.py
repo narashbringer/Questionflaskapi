@@ -1,19 +1,19 @@
+import os
 from flask_api import FlaskAPI
 from flask_sqlalchemy import SQLAlchemy
-from config import app_config
+from app.config import app_config
 from flask import request, jsonify, abort, make_response
 
 db = SQLAlchemy()
 
 def create_app(config_name):
+    from app.models import User,Question
+    app = FlaskAPI(__name__, instance_relative_config=True)
     app_settings = os.getenv(
     'APP_SETTINGS',
     'app.config.DevelopmentConfig'
-)
-app.config.from_object(app_settings)s
-    from app.models import User,Question
-    app = FlaskAPI(__name__, instance_relative_config=True)
-    app.config.from_object(app_config[config_name])
+    )
+    app.config.from_object(app_settings)
     app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
