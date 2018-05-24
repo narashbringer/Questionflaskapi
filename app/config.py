@@ -3,8 +3,7 @@ import os
 base_dir = os.path.abspath(os.path.dirname(__file__))
 postgres_local_base = 'postgresql://postgres:123456@localhost/'
 database_name = 'api'
-
-
+SECRET_KEY="thisIsSoStupidITHERS333"
 class BaseConfig:
     """
     Base application configuration
@@ -28,7 +27,7 @@ class DevelopmentConfig(BaseConfig):
     AUTH_TOKEN_EXPIRY_DAYS = 1
     AUTH_TOKEN_EXPIRY_SECONDS = 20
     BUCKET_AND_ITEMS_PER_PAGE = 4
-
+    SECRET="thisIsSoStupidITHERS333"
 
 class TestingConfig(BaseConfig):
     """
@@ -42,7 +41,7 @@ class TestingConfig(BaseConfig):
     AUTH_TOKEN_EXPIRY_SECONDS = 3
     AUTH_TOKEN_EXPIRATION_TIME_DURING_TESTS = 5
     BUCKET_AND_ITEMS_PER_PAGE = 3
-
+    SECRET="thisIsSoStupidITHERS333"
 
 class ProductionConfig(BaseConfig):
     """
@@ -54,3 +53,4 @@ class ProductionConfig(BaseConfig):
     AUTH_TOKEN_EXPIRY_DAYS = 30
     AUTH_TOKEN_EXPIRY_SECONDS = 20
     BUCKET_AND_ITEMS_PER_PAGE = 10
+    SECRET="thisIsSoStupidITHERS333"
