@@ -14,7 +14,7 @@ def create_app(config_name):
     'app.config.DevelopmentConfig'
     )
     app.config.from_object(app_settings)
-    app.config.from_pyfile('config.py')
+    #app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     @app.route('/questions/', methods=['POST', 'GET'])
