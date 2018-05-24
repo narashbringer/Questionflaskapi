@@ -1,7 +1,7 @@
 import os
 from flask_api import FlaskAPI
 from flask_sqlalchemy import SQLAlchemy
-from app.config import app_config
+#from config import app_config
 from flask import request, jsonify, abort, make_response
 
 db = SQLAlchemy()
