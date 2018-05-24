@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 def create_app(config_name):
     from app.models import User,Question
-    app = FlaskAPI(__name__, instance_relative_config=True)
+    app = FlaskAPI(__name__, static_folder=None)
     app_settings = os.getenv(
     'APP_SETTINGS',
     'app.config.DevelopmentConfig'
