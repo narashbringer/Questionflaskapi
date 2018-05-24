@@ -11,7 +11,7 @@ def create_app(config_name):
     app = FlaskAPI(__name__, instance_relative_config=True)
     app_settings = os.getenv(
     'APP_SETTINGS',
-    'app.config.DevelopmentConfig'
+    'app.config.ProductionConfig'
     )
     app.config.from_object(app_settings)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
