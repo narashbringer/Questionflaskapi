@@ -1,7 +1,7 @@
 import os
 from flask_api import FlaskAPI
 from flask_sqlalchemy import SQLAlchemy
-#from config import app_config
+from app.config import BaseConfig,ProductionConfig
 from flask import request, jsonify, abort, make_response
 
 db = SQLAlchemy()
@@ -11,9 +11,10 @@ def create_app(config_name):
     app = FlaskAPI(__name__, instance_relative_config=True)
     app_settings = os.getenv(
     'APP_SETTINGS',
-    'app.config.ProductionConfig'
+    'app.config.DevelopmentConfig'
     )
     app.config.from_object(app_settings)
+    app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     @app.route('/questions/', methods=['POST', 'GET'])
