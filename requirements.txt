@@ -48,6 +48,7 @@ Flask-Script==2.0.6
 Flask-SQLAlchemy==2.3.2
 gevent==1.2.1
 greenlet==0.4.11
+gunicorn
 h5py==2.6.0
 HeapDict==1.0.0
 hupper==1.2
