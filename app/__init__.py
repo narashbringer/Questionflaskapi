@@ -3,12 +3,14 @@ from flask_api import FlaskAPI
 from flask_sqlalchemy import SQLAlchemy
 from app.config import BaseConfig,ProductionConfig
 from flask import request, jsonify, abort, make_response
+from flask_cors import CORS
 
 db = SQLAlchemy()
 
 # def create_app(config_name):
 from app.models import User,Question
 app = FlaskAPI(__name__, static_folder=None)
+CORS(app)
 app_settings = os.getenv(
     'APP_SETTINGS',
     'app.config.DevelopmentConfig'
@@ -17,6 +19,7 @@ app.config.from_object(app_settings)
     #app.config.from_pyfile('config.py')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+
 @app.route('/questions/', methods=['POST', 'GET'])
 def question():
         # Get the access token from the header

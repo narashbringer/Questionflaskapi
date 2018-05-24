@@ -1,13 +1,13 @@
 import unittest
 import json
-from app import create_app, db
+from app import app, db
 
 class AuthTestCase(unittest.TestCase):
     """Test case for the authentication blueprint."""
 
     def setUp(self):
         """Set up test variables."""
-        self.app = create_app(config_name="testing")
+        self.app = app
         # initialize the test client
         self.client = self.app.test_client
         # This is the user test json data with a predefined email and password
