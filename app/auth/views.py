@@ -56,7 +56,8 @@ class LoginView(MethodView):
             # Try to authenticate the found user using their password
             if user and user.password_is_valid(request.data['password']):
                 # Generate the access token. This will be used as the authorization header
-                
+                print(user)
+                print(user.id)
                 access_token = user.generate_token(user.id)
                 print(access_token)
                 if access_token:
