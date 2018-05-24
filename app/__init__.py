@@ -6,19 +6,19 @@ from flask import request, jsonify, abort, make_response
 
 db = SQLAlchemy()
 
-def create_app(config_name):
-    from app.models import User,Question
-    app = FlaskAPI(__name__, static_folder=None)
-    app_settings = os.getenv(
+# def create_app(config_name):
+from app.models import User,Question
+app = FlaskAPI(__name__, static_folder=None)
+app_settings = os.getenv(
     'APP_SETTINGS',
     'app.config.DevelopmentConfig'
     )
-    app.config.from_object(app_settings)
+app.config.from_object(app_settings)
     #app.config.from_pyfile('config.py')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.init_app(app)
-    @app.route('/questions/', methods=['POST', 'GET'])
-    def question():
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+@app.route('/questions/', methods=['POST', 'GET'])
+def question():
         # Get the access token from the header
         auth_header = request.headers.get('Authorization')
         access_token = auth_header.split(" ")[1]
@@ -91,8 +91,8 @@ def create_app(config_name):
                 }
                 return make_response(jsonify(response)), 401
 
-    @app.route('/questions/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-    def question_manipulation(id, **kwargs):
+@app.route('/questions/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def question_manipulation(id, **kwargs):
      # retrieve a question using it's ID
             question = Question.query.filter_by(id=id).first()
             if not question:
@@ -146,7 +146,7 @@ def create_app(config_name):
 
 
 
-    from .auth import auth_blueprint
-    app.register_blueprint(auth_blueprint)
+from .auth import auth_blueprint
+app.register_blueprint(auth_blueprint)
     
-    return app
+    
