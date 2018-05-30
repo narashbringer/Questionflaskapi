@@ -7,7 +7,7 @@ class AuthTestCase(unittest.TestCase):
 
     def setUp(self):
         """Set up test variables."""
-        self.app = app
+        self.app = app()
         # initialize the test client
         self.client = self.app.test_client
         # This is the user test json data with a predefined email and password
